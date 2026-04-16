@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <nav id="main-menu"></nav>
+
+    <script>
+        // Данные для меню (Расширенный функционал)
+        const menuData = [
+            { title: 'Главная', link: '#' },
+            { title: 'Услуги', link: '#', children: [
+                { title: 'Веб-дизайн', link: '#' },
+                { title: 'Разработка', link: '#' }
+            ]},
+            { title: 'О нас', link: '#' },
+            { title: 'Контакты', link: '#' }
+        ];
+
+        const nav = document.getElementById('main-menu');
+        const ul = document.createElement('ul');
+        ul.className = 'menu-list';
+
+        menuData.forEach(item => {
+            const li = document.createElement('li');
+            li.innerHTML = `<a href="${item.link}">${item.title}</a>`;
+            
+            // Если есть подменю
+            if (item.children) {
+                const subUl = document.createElement('ul');
+                subUl.className = 'submenu';
+                item.children.forEach(child => {
+                    const subLi = document.createElement('li');
+                    subLi.innerHTML = `<a href="${child.link}">${child.title}</a>`;
+                    subUl.appendChild(subLi);
+                });
+                li.appendChild(subUl);
+            }
+            
+            li.addEventListener('click', () => console.log(`Выбрано: ${item.title}`));
+            ul.appendChild(li);
+        });
+        nav.appendChild(ul);
+    </script>
+</body>
+</html>
