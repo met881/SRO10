@@ -1,0 +1,28 @@
+/* Базовые стили */
+.menu-list { display: flex; list-style: none; background: #333; padding: 10px; }
+.menu-list > li { position: relative; margin-right: 20px; }
+.menu-list a { color: white; text-decoration: none; padding: 10px; transition: 0.3s; }
+
+/* Ховер на главный пункт */
+.menu-list > li:hover > a { background: #555; border-radius: 4px; }
+
+/* Подменю (скрыто по умолчанию) */
+.submenu {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background: #444;
+    list-style: none;
+    padding: 10px;
+    opacity: 0;             /* Прозрачность для анимации */
+    visibility: hidden;    /* Полное скрытие */
+    transform: translateY(10px); /* Смещение вниз */
+    transition: all 0.4s ease;   /* Плавность */
+}
+
+/* Появление при наведении */
+.menu-list li:hover .submenu {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
